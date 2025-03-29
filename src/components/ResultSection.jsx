@@ -30,10 +30,10 @@ const ResultSection = ({ result }) => {
   const handleBookingSubmit = async (e) => {
     e.preventDefault();
     try {
-      const passengerRes = await axios.post('http://127.0.0.1:8000/api/airline/passengers/', formData);
+      const passengerRes = await axios.post('http://AirlineBusBooking-backend-lb-1215843260.eu-west-1.elb.amazonaws.com/api/airline/passengers/', formData);
       const passengerId = passengerRes.data.id;
 
-      await axios.post('http://127.0.0.1:8000/api/airline/bookings/', {
+      await axios.post('http://AirlineBusBooking-backend-lb-1215843260.eu-west-1.elb.amazonaws.com/api/airline/bookings/', {
         flight: selectedFlight.id,
         passenger: passengerId,
         seat_number: formData.seat_number,

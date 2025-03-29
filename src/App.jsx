@@ -10,7 +10,7 @@ function App() {
   const handleSearch = async (origin, destination) => {
     try {
       // const res = await fetch(`http://127.0.0.1:8000/api/airline/search-combined/?origin=${origin}&destination=${destination}`);
-      const res = await fetch(`http://127.0.0.1:8000/api/airline/search-combined/?from=${origin}&to=${destination}`);
+      const res = await fetch(`http://AirlineBusBooking-backend-lb-1215843260.eu-west-1.elb.amazonaws.com/api/airline/search-combined/?from=${origin}&to=${destination}`);
       const data = await res.json();
   
       setSearchResult(data); // This will have both `flights` and `buses`

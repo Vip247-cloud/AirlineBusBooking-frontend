@@ -7,7 +7,7 @@ const AdminBookingPanel = () => {
 
   const fetchBookings = async () => {
     try {
-      const res = await axios.get('http://127.0.0.1:8000/api/airline/bookings/');
+      const res = await axios.get('http://AirlineBusBooking-backend-lb-1215843260.eu-west-1.elb.amazonaws.com/api/airline/bookings/');
       setBookings(res.data);
     } catch (error) {
       console.error('Error fetching bookings:', error);
@@ -17,7 +17,7 @@ const AdminBookingPanel = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this booking?')) return;
     try {
-      await axios.delete(`http://127.0.0.1:8000/api/airline/bookings/${id}/`);
+      await axios.delete(`http://AirlineBusBooking-backend-lb-1215843260.eu-west-1.elb.amazonaws.com/api/airline/bookings/${id}/`);
       fetchBookings();
     } catch (error) {
       console.error('Failed to delete booking:', error);

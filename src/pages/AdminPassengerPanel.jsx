@@ -13,7 +13,7 @@ const AdminPassengerPanel = () => {
 
   const fetchPassengers = async () => {
     try {
-      const res = await axios.get('http://127.0.0.1:8000/api/airline/passengers/');
+      const res = await axios.get('http://AirlineBusBooking-backend-lb-1215843260.eu-west-1.elb.amazonaws.com/api/airline/passengers/');
       setPassengers(res.data);
     } catch (err) {
       console.error('❌ Failed to fetch passengers:', err);
@@ -30,7 +30,7 @@ const AdminPassengerPanel = () => {
 
   const handleCreate = async () => {
     try {
-      await axios.post('http://127.0.0.1:8000/api/airline/passengers/', form);
+      await axios.post('http://AirlineBusBooking-backend-lb-1215843260.eu-west-1.elb.amazonaws.com/api/airline/passengers/', form);
       setForm({ first_name: '', last_name: '', email: '', phone: '' });
       fetchPassengers();
     } catch (err) {
@@ -41,7 +41,7 @@ const AdminPassengerPanel = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this passenger?')) return;
     try {
-      await axios.delete(`http://127.0.0.1:8000/api/airline/passengers/${id}/`);
+      await axios.delete(`http://AirlineBusBooking-backend-lb-1215843260.eu-west-1.elb.amazonaws.com/api/airline/passengers/${id}/`);
       fetchPassengers();
     } catch (err) {
       console.error('❌ Failed to delete passenger:', err);

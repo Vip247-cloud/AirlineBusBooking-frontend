@@ -14,7 +14,7 @@ const FlightAdminPanel = () => {
 
   const handleSearch = async () => {
     try {
-      const res = await axios.get(`http://127.0.0.1:8000/api/airline/search/`, {
+      const res = await axios.get(`http://AirlineBusBooking-backend-lb-1215843260.eu-west-1.elb.amazonaws.com/api/airline/search/`, {
         params: { origin, destination },
       });
       setFlights(res.data?.data || []);
@@ -37,7 +37,7 @@ const FlightAdminPanel = () => {
         airline: flight.airline?.name || 'Unknown Airline',
         price: Math.floor(Math.random() * 200 + 50),
       };
-      await axios.post(`http://127.0.0.1:8000/api/airline/import/`, payload);
+      await axios.post(`http://AirlineBusBooking-backend-lb-1215843260.eu-west-1.elb.amazonaws.com/api/airline/import/`, payload);
       setMessage('✅ Flight imported successfully!');
     } catch (err) {
       console.error(err);
