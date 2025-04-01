@@ -60,7 +60,7 @@ const ResultSection = ({ result }) => {
   };
 
   const handleBusBooking = (from, to) => {
-    const url = `http://localhost:8001/book?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`;
+    const url = `https://m97ksfo27c.execute-api.eu-west-1.amazonaws.com/lyuble/bus/book?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`;
     window.open(url, '_blank');
   };
 
@@ -111,12 +111,13 @@ const ResultSection = ({ result }) => {
             <ul className="space-y-6">
               {buses.map((bus, index) => (
                 <li key={index} className="bg-white p-6 rounded-xl shadow-md border hover:shadow-lg transition">
-                  <p className="text-lg font-medium">{bus.from_city} → {bus.to_city}</p>
-                  <p className="text-sm text-gray-500">🕒 Duration: {bus.duration}</p>
-                  <p className="text-sm text-gray-500">🚌 Mode: {bus.mode}</p>
-                  <p className="text-green-600 font-bold mt-2">💶 {bus.price}</p>
+                  <p className="text-lg font-medium">{bus.origin} → {bus.destination}</p>
+                  <p className="text-sm text-gray-500">🕒 Departure: {new Date(bus.departure_time).toLocaleString()}</p>
+                  <p className="text-sm text-gray-500">🛬 Arrival: {new Date(bus.arrival_time).toLocaleString()}</p>
+                  <p className="text-sm text-gray-600">🚌 Bus Number: <strong>{bus.bus_number}</strong></p>
+                  <p className="text-green-600 font-bold mt-2">💶 {bus.fare} EUR</p>
                   <button
-                    onClick={() => handleBusBooking(bus.from_city, bus.to_city)}
+                    onClick={() => handleBusBooking(bus.origin, bus.destination)}
                     className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700"
                   >
                     Book Bus
